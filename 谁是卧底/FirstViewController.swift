@@ -45,13 +45,13 @@ class FirstViewController: UIViewController {
         }else if whiteOne == 100{
             alert.addButton("YES"){
                 var tmp = arc4random()%UInt32(self.arrayLength)
-                var t = Int(tmp)
+                let t = Int(tmp)
                 
                 if self.array[t] == 0{
                     tmp += 1
                 }
                 self.whiteOne = Int(tmp)
-                println(self.whiteOne)
+                print(self.whiteOne)
             }
             alert.showError("sure?", subTitle: "you are going to add a white guy", closeButtonTitle: "NO", duration: 2)
         }else{
@@ -70,32 +70,34 @@ class FirstViewController: UIViewController {
     }
     @IBAction func setting(sender: AnyObject) {
         let alert = SCLAlertView()
-        let txtPeople = alert.addTextField(title:"Enter the people count")
+        let txtPeople = alert.addTextField("Enter the people count")
         txtPeople.keyboardType = UIKeyboardType.NumberPad
-        let txtRandom = alert.addTextField(title:"Enter the different count")
+        let txtRandom = alert.addTextField("Enter the different count")
         txtRandom.keyboardType = UIKeyboardType.NumberPad
         alert.addButton("OK") {
-            if txtPeople.text.toInt() > 2{
-                self.arrayLength = txtPeople.text.toInt()
+            if(txtPeople.text != nil && txtRandom.text != nil){
+            if Int(txtPeople.text!) > 2{
+                self.arrayLength = Int(txtPeople.text!)
             }
             
-            if txtRandom.text.toInt() < 4{
-                self.randomCount = txtRandom.text.toInt()
+            if Int(txtRandom.text!) < 4{
+                self.randomCount = Int(txtRandom.text!)
             }
             
             UIView.animateWithDuration(0.5, animations: {self.view.alpha=0.1}, completion: { finished in
                 self.loadView()
             })
+            }
         }
         alert.showEdit("设置", subTitle:"设置玩家人数和卧底人数", closeButtonTitle:"Cancle")
         
     }
     @IBAction func check(sender: AnyObject) {
         let alert = SCLAlertView()
-        let different = alert.addTextField(title:"Enter the digi")
+        let different = alert.addTextField("Enter the digi")
         different.keyboardType = UIKeyboardType.NumberPad
         alert.addButton("Sure"){
-            if var t = different.text.toInt()
+            if let t = Int(different.text!)
             {
                 if self.whetherChecked(t) == true {
                     let newAlert = SCLAlertView()
@@ -234,9 +236,9 @@ class FirstViewController: UIViewController {
         UILabel.beginAnimations("animationID", context: nil)
         UILabel.setAnimationDuration(1)
         UILabel.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
-        var moveTransform1:CGAffineTransform = CGAffineTransformMakeRotation(0)
+        let moveTransform1:CGAffineTransform = CGAffineTransformMakeRotation(0)
         
-        var moveTransform2:CGAffineTransform = CGAffineTransformTranslate(moveTransform1, 0, 0)
+        let moveTransform2:CGAffineTransform = CGAffineTransformTranslate(moveTransform1, 0, 0)
         newLabel.layer.setAffineTransform(moveTransform2)
         
         UILabel.commitAnimations()
@@ -284,7 +286,7 @@ class FirstViewController: UIViewController {
         let arrayCreator = Array(givenNbr:arrayLength,rC:randomCount)
         array = arrayCreator.getArray()
         
-        println(array)
+        print(array)
         
         index = arc4random()%40 + 1
         

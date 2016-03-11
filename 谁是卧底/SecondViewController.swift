@@ -36,8 +36,8 @@ class SecondViewController: UIViewController,UITabBarDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        println(item)
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        print(item)
     }
     
     @IBOutlet weak var label: UILabel!
@@ -53,7 +53,7 @@ class SecondViewController: UIViewController,UITabBarDelegate {
         textLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(textLabel)
         //self.tabBarController?.tabBar.delegate = self
-        fiv = storyBoard.instantiateViewControllerWithIdentifier("first") as! UIViewController
+        fiv = storyBoard.instantiateViewControllerWithIdentifier("first") 
         
         swipeUpRec.direction = UISwipeGestureRecognizerDirection.Up
         swipeDownRec.direction = UISwipeGestureRecognizerDirection.Down
